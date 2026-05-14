@@ -1,0 +1,10 @@
+{
+  "name": "venueAdmin",
+  "version": "1.0.0",
+  "description": "场馆管理云函数（CRUD + 审核）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "jsonwebtoken": "^9.0.0"
+  }
+}

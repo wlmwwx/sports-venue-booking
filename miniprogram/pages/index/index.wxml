@@ -1,0 +1,4 @@
+<view class="container">
+  <text class="title">{{motto}}</text>
+  <text class="subtitle">发现身边的运动场馆</text>
+</view>

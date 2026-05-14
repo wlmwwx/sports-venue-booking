@@ -1,4 +1,20 @@
+<scroll-view scroll-x class="tabs">
+  <block wx:for="{{sportTypes}}" wx:key="*this">
+    <view class="tab {{activeSport === item ? 'active' : ''}}" data-type="{{item}}" bindtap="switchSport">{{item}}</view>
+  </block>
+</scroll-view>
+
 <view class="container">
-  <text class="title">{{motto}}</text>
-  <text class="subtitle">发现身边的运动场馆</text>
+  <block wx:for="{{venues}}" wx:key="_id">
+    <view class="venue-card" data-id="{{item._id}}" bindtap="goDetail">
+      <view class="venue-name">{{item.name}}</view>
+      <view class="venue-tags">
+        <block wx:for="{{item.sportTypes}}" wx:key="*this" wx:for-item="t">
+          <text class="tag">{{t}}</text>
+        </block>
+      </view>
+      <view class="venue-address">{{item.address}}</view>
+    </view>
+  </block>
+  <view wx:if="{{venues.length === 0}}" class="empty">暂无场馆</view>
 </view>

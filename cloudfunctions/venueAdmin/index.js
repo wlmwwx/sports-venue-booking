@@ -7,14 +7,16 @@ const JWT_SECRET = 'sports-venue-booking-secret';
 
 exports.main = async (event) => {
   const { action, token } = event;
-  const user = verifyUser(token);
 
+  if (action === 'get') return getVenue(event.venueId);
+  if (action === 'listApproved') return listApprovedVenues(event.sportType);
+
+  const user = verifyUser(token);
   switch (action) {
     case 'create': return createVenue(user, event);
     case 'update': return updateVenue(user, event);
     case 'myVenues': return getMyVenues(user);
-    case 'get': return getVenue(event.venueId);
-    case 'listPending': return listPending(user); // 平台运营
+    case 'listPending': return listPending(user);
     case 'approve': return approve(user, event.venueId);
     case 'reject': return reject(user, event.venueId, event.reason);
     case 'suspend': return suspend(user, event.venueId);
@@ -97,4 +99,11 @@ async function suspend(user, venueId) {
   if (user.role !== 'admin' && user.role !== 'super') return { success: false, error: '权限不足' };
   await db.collection('venues').doc(venueId).update({ data: { status: 'suspended', updatedAt: db.serverDate() } });
   return { success: true };
+}
+
+async function listApprovedVenues(sportType) {
+  const query = { status: 'approved' };
+  if (sportType) query.sportTypes = db.command.in([sportType]);
+  const { data } = await db.collection('venues').where(query).orderBy('createdAt', 'desc').get();
+  return { success: true, venues: data };
 }

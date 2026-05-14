@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="card">
+    <view class="title">预定确认</view>
+    <view class="row"><text>日期</text><text>{{date}}</text></view>
+    <view class="row"><text>时段</text><text>{{time}}</text></view>
+    <view class="row"><text>价格</text><text class="price">¥{{price}}</text></view>
+  </view>
+  <button class="confirm-btn" loading="{{loading}}" bindtap="confirmBook">确认预定</button>
+</view>

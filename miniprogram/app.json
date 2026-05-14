@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/venue-detail/venue-detail",
+    "pages/venue-booking/venue-booking"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,9 +15,7 @@
       "desc": "需要获取您的位置以展示附近场馆"
     }
   },
-  "requiredPrivateInfos": [
-    "getLocation"
-  ],
+  "requiredPrivateInfos": ["getLocation"],
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

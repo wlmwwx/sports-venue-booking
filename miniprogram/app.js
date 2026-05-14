@@ -9,6 +9,18 @@ App({
       env: 'your-env-id', // 替换为云开发环境 ID
       traceUser: true,
     });
+
+    // 自动登录：调用云函数获取 openid
+    wx.cloud.callFunction({
+      name: 'login',
+      success: (res) => {
+        this.globalData.openid = res.result.openid;
+        console.log('登录成功, openid:', res.result.openid);
+      },
+      fail: (err) => {
+        console.error('登录失败:', err);
+      },
+    });
   },
 
   globalData: {

@@ -1,0 +1,10 @@
+{
+  "name": "courtAdmin",
+  "version": "1.0.0",
+  "description": "场地号与时段管理云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "jsonwebtoken": "^9.0.0"
+  }
+}
